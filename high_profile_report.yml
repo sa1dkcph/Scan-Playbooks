@@ -4,16 +4,6 @@
     oscap_profile: xccdf_org.ssgproject.content_profile_anssi_np_nt28_high
     oscap_policy: ssg-ubuntu1604-ds
 
-  tasks:
-
-  - name: install openscap scanner
-    package:
-      name: "{{ item }}"
-      state: latest
-    with_items:
-    - openscap-scanner
-    - scap-security-guide
-
   - block:
     - name: run openscap
       command: oscap xccdf eval \
