@@ -19,7 +19,6 @@
         --profile {{ oscap_profile }} \
         --results /home/vagrant/scap-security-guide-0.1.44-oval-5.10/high.xml \
         --report /home/vagrant/scap-security-guide-0.1.44-oval-5.10/high-report.html \
-        --fetch-remote-resources \
         /home/vagrant/scap-security-guide-0.1.44-oval-5.10/{{ oscap_policy }}.xml
 
     always:
