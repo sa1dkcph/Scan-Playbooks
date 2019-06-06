@@ -17,14 +17,14 @@
     - name: run openscap
       command: oscap xccdf eval \
         --profile {{ oscap_profile }} \
-        --results /home/vagrant/ssg/minimal.xml \
-        --report /home/vagrant/ssg/minimal-report.html \
+        --results /tmp/ubuntu-minimal.xml \
+        --report /tmp/ubuntu-minimal.html \
         /home/vagrant/ssg/{{ oscap_policy }}.xml
 
     always:
 
     - name: download report
       fetch:
-        src: /home/vagrant/ssg/minimal-report.html
-        dest: ../oscap-reports/{{ inventory_hostname }}.html
+        src: /tmp/ubuntu-minimal.html
+        dest: ../oscap-reports/ubuntu-minimal.html
         flat: yes

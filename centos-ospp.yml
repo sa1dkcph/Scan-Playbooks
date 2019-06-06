@@ -1,7 +1,7 @@
 - hosts: centos
 
   vars:
-    oscap_profile: xccdf_org.ssgproject.content_profile_pci-dss
+    oscap_profile: xccdf_org.ssgproject.content_profile_ospp
     oscap_policy: ssg-centos7-ds
 
   tasks:
@@ -18,15 +18,15 @@
     - name: run openscap
       command: oscap xccdf eval \
         --profile {{ oscap_profile }} \
-        --results /tmp/centos-pci-dss.xml \
-        --report /tmp/centos-pci-dss.html \
-        --fetch-remote-resources \
+        --results /tmp/centos-ospp.xml \
+        --report /tmp/centos-ospp.html \
+        --fetch-remote-resources
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
     always:
 
     - name: download report
       fetch:
-        src: /tmp/centos-pci-dss.html
-        dest: ../oscap-reports/centos-pci-dss.html
+        src: /tmp/centos-ospp.html
+        dest: ../oscap-reports/centos-ospp.html
         flat: yes
