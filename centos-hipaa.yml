@@ -2,7 +2,7 @@
 
   vars:
     oscap_profile: xccdf_org.ssgproject.content_profile_hipaa
-    oscap_policy: ssg-centos7-xccdf
+    oscap_policy: ssg-centos7-ds
 
   tasks:
 
@@ -18,8 +18,8 @@
     - name: run openscap
       command: oscap xccdf eval \
         --profile {{ oscap_profile }} \
-        --results /tmp/oscap-results.xml \
-        --report /tmp/oscap-report.html \
+        --results /tmp/centos-hipaa.xml \
+        --report /tmp/centos-hipaa.html \
         --fetch-remote-resources
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
@@ -27,6 +27,6 @@
 
     - name: download report
       fetch:
-        src: /tmp/oscap-report.html
-        dest: ../oscap-reports/{{ inventory_hostname }}.html
+        src: /tmp/centos-hipaa.html
+        dest: ../oscap-reports/centos-hipaa.html
         flat: yes
