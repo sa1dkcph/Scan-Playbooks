@@ -1,0 +1,30 @@
+- hosts: ubuntu
+
+  vars:
+    oscap_profile: xccdf_org.ssgproject.content_profile_anssi_np_nt28_average
+    oscap_policy: ssg-ubuntu1604-ds
+
+  tasks:
+
+  - name: install openscap scanner
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+    - libopenscap8
+
+  - block:
+    - name: run openscap
+      command: oscap xccdf eval \
+        --profile {{ oscap_profile }} \
+        --results /home/vagrant/ssg/average.xml \
+        --report /home/vagrant/ssg/average-report.html \
+        /home/vagrant/ssg/{{ oscap_policy }}.xml
+
+    always:
+
+    - name: download report
+      fetch:
+        src: /home/vagrant/ssg/average-report.html
+        dest: ../oscap-reports/{{ inventory_hostname }}.html
+        flat: yes
