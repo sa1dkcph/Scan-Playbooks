@@ -18,7 +18,7 @@
     - name: run openscap
       command: oscap xccdf eval \
         --profile {{ oscap_profile }} \
-        --results-arf /tmp/oscap-arf.xml \
+        --results /tmp/oscap-results.xml \
         --report /tmp/oscap-report.html \
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
