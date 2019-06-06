@@ -1,0 +1,30 @@
+- hosts: ubuntu
+
+  vars:
+    oscap_profile: anssi_np_nt28_high
+    oscap_policy: ssg-ubuntu1604-xccdf
+
+  tasks:
+
+  - name: install openscap scanner
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+    - libopenscap8
+
+  - block:
+    - name: run openscap
+      command: oscap xccdf eval \
+        --profile {{ oscap_profile }} \
+        --results /home/vagrant/scap-security-guide-0.1.44-oval-5.10/content/high.xml \
+        --report /home/vagrant/scap-security-guide-0.1.44-oval-5.10/content/high-report.html \
+        /home/vagrant/scap-security-guide-0.1.44-oval-5.10/content/{{ oscap_policy }}.xml
+
+    always:
+
+    - name: download report
+      fetch:
+        src: /home/vagrant/scap-security-guide-0.1.44-oval-5.10/content/high-report.html
+        dest: ../oscap-reports/{{ inventory_hostname }}.html
+        flat: yes
