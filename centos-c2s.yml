@@ -20,7 +20,6 @@
         --profile {{ oscap_profile }} \
         --results /tmp/centos-c2s.xml \
         --report /tmp/centos-c2s.html \
-        --fetch-remote-resources
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
     always:
