@@ -25,6 +25,6 @@
 
     - name: download report
       fetch:
-        src: /tmp/ssg/ubuntu-average.html
+        src: /tmp/ubuntu-average.html
         dest: ../oscap-reports/ubuntu-average.html
         flat: yes
