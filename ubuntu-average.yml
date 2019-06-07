@@ -1,4 +1,4 @@
-- hosts: ubuntu
+- hosts: average
 
   vars:
     oscap_profile: xccdf_org.ssgproject.content_profile_anssi_np_nt28_average
