@@ -1,4 +1,4 @@
-- hosts: centos
+- hosts: nist
 
   vars:
     oscap_profile: xccdf_org.ssgproject.content_profile_nist-800-171-cui
