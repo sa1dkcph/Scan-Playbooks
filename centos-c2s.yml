@@ -1,3 +1,4 @@
+---
 - hosts: c2s
 
   vars:
@@ -6,24 +7,24 @@
 
   tasks:
 
-  - name: install openscap scanner
-    package:
-      name: "{{ item }}"
-      state: latest
-    with_items:
-    - openscap-scanner
-    - scap-security-guide
-
-  - block:
+    - name: install openscap scanner
+      package:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - openscap-scanner
+        - scap-security-guide
+  
     - name: run openscap
-      command: oscap xccdf eval \
+      command: 
+        oscap xccdf eval \
         --profile {{ oscap_profile }} \
         --results /tmp/centos-c2s.xml \
         --report /tmp/centos-c2s.html \
         --fetch-remote-resources
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
-    always:
+  always:
 
     - name: download report
       fetch:
