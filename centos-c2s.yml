@@ -1,6 +1,5 @@
 ---
 - hosts: c2s
-
   vars:
     oscap_profile: xccdf_org.ssgproject.content_profile_C2S
     oscap_policy: ssg-centos7-ds
