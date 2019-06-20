@@ -1,4 +1,3 @@
----
 - hosts: c2s
 
   vars:
@@ -31,5 +30,4 @@
         src: /tmp/centos-cjis.html
         dest: ../oscap-reports/centos-cjis.html
         flat: yes
-
 
