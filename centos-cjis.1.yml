@@ -1,7 +1,7 @@
 - hosts: c2s
 
   vars:
-    oscap_profile: xccdf_org.ssgproject.content_profile_cjis
+    oscap_profile: xccdf_org.ssgproject.content_profile_c2s
     oscap_policy: ssg-centos7-ds
 
   tasks:
@@ -18,8 +18,8 @@
     - name: run openscap
       command: oscap xccdf eval \
         --profile {{ oscap_profile }} \
-        --results /tmp/centos-cjis.xml \
-        --report /tmp/centos-cjis.html \
+        --results /tmp/centos-c2s.xml \
+        --report /tmp/centos-c2s.html \
         --fetch-remote-resources
         /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
 
@@ -27,7 +27,7 @@
 
     - name: download report
       fetch:
-        src: /tmp/centos-cjis.html
-        dest: ../oscap-reports/centos-cjis.html
+        src: /tmp/centos-c2s.html
+        dest: ../oscap-reports/centos-c2s.html
         flat: yes
 
